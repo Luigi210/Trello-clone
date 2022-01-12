@@ -3,21 +3,21 @@ import {AppContainer} from "./styles";
 import {FC} from 'react';
 import {AddNewItem} from "./Components/AddNewItem";
 import {Column} from "./Components/Column";
-import {Card} from './Components/Card';
+import {useAppState} from "./state/AppStateContext";
+import {addList} from "./state/action";
+
 
 export const App: FC = ({children}) => {
+
+    const {lists, dispatch} = useAppState();
+
+
     return (
         <AppContainer>
-            <Column text={"To Do"}>
-                <Card text={"Generate app scaffold"}/>
-            </Column>
-            <Column text={"In Progress"}>
-                <Card text={"Learn Typescript"}/>
-            </Column>
-            <Column text={"Done"}>
-                <Card text={"Begin to use static typing"}/>
-            </Column>
-            <AddNewItem onAdd={console.log} toggleButtonText={"+ Add another list"}/>
+            {lists.map((list) => (
+                <Column text={list.text} id={list.id} key={list.id}/>
+            ))}
+            <AddNewItem onAdd={text => dispatch(addList(text))} toggleButtonText={"+ Add another list"}/>
         </AppContainer>
     );
 }
