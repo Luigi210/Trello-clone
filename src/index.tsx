@@ -5,7 +5,6 @@ import {App} from './App';
 import {AppStateProvider} from "./state/AppStateContext";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend as Backend} from "react-dnd-html5-backend";
-
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
